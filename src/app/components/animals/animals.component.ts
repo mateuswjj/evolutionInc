@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./animals.component.scss']
 })
 export class AnimalsComponent {
-
+//TODO create enviroments
 }
