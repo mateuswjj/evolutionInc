@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimalsServiceService } from './_services/animals-service.service';
+import { AnimalsService } from './_services/animals-service.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-animals',
   templateUrl: './animals.component.html',
   styleUrls: ['./animals.component.scss']
 })
-export class AnimalsComponent implements OnInit{
+export class AnimalsComponent implements OnInit{  
+  items$ = new BehaviorSubject<AnimalsComponent[]>([]);
 
-  constructor(public animalService: AnimalsServiceService){
-    
+  constructor(public animalService: AnimalsService){  
   }
 
   ngOnInit() {
-   this.animalService.getAnimalsByName("Lion").subscribe((res) => console.log(res))
   }
 
   searchAnimal(animal:any){
-    console.log(animal)
+    const input = document.getElementById("input") as HTMLInputElement
+    const inputValue = input.value
+    this.animalService.getAnimalsByName(inputValue).subscribe((res) => console.log())
+
   }
 //TODO create enviroments
 }
